@@ -129,7 +129,7 @@ func (udm *UDM) Start() {
 		udmPemPath = path_util.Gofree5gcPath(sbi.Tls.Pem)
 		udmKeyPath = path_util.Gofree5gcPath(sbi.Tls.Key)
 	}
-	addr := fmt.Sprintf("%s:%d", sbi.IPv4Addr, sbi.Port)
+	//addr := fmt.Sprintf("%s:%d", sbi.IPv4Addr, sbi.Port)
 
 	self := context.UDM_Self()
 	// util.InitUDMContext(self)
@@ -151,7 +151,7 @@ func (udm *UDM) Start() {
 	}
 
 	go handler.Handle()
-	server, err := http2_util.NewServer(addr, udmLogPath, router)
+	server, err := http2_util.NewServer(":29503", udmLogPath, router)
 	if server == nil {
 		initLog.Errorln("Initialize HTTP server failed: %+v", err)
 		return
